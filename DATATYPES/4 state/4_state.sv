@@ -1,7 +1,6 @@
-//example for 4-state datatypes
 module four_state();
   reg [4:0] rg;
-  wire wir;
+  wire [1:0]wir;
   logic[8:1] log;
   tri[4:0] t;
   real rl1,rl2;
@@ -42,6 +41,7 @@ module four_state();
     $display("value of tri after initialization=%b",t);
     $display("value of wire after initialization=%b",wir);
   end
-  assign wir=^rg;
+  assign wir[0]=^rg;
+  assign wir[1]=& rg;
   assign t=log[8]?rg:5'bzzzzz;
 endmodule
