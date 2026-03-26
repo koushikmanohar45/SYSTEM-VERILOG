@@ -5,13 +5,15 @@ module unpacked_2D();
   initial begin
 
     // Writing
-    foreach(arr[i][j]) begin
-      arr[i][j]=i+j;
+    for(i=0;i<3;i++) begin
+      for(j=0;j<4;j++)
+        arr[i][j]=i+j;
     end
 
     // Reading
-    foreach(arr[i][j]) begin
-      $display("arr[%0d][%0d]=%0d",i,j,arr[i][j]);
+    for(i=0;i<3;i++) begin
+      for(j=0;j<4;j++)
+        $display("arr[%0d][%0d]=%0d",i,j,arr[i][j]);
     end
     $display("2D array = %p",arr);
   end
