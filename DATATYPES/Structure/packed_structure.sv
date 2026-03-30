@@ -43,7 +43,7 @@ endmodule
 
 
 
-output:
+/*output:
                 Packed Struct            
 ++++++++++++++++++++++++++++++++++++++++++++++
 STRUCTURE1:'{Header:'ha, ID:'h5, data:'hf2}
@@ -74,4 +74,4 @@ STRUCTURE2:'{Header:'hd, ID:'h7, data:'hf0}
 Packed:d7f0
 Header:1101
 ID:0111
-Data:11110000
+Data:11110000 */
