@@ -1,4 +1,4 @@
-module arithmetic_operator;
+module logical_operator;
   reg  [3:0] a,b;
 
   task automatic display();
