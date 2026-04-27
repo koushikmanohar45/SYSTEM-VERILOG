@@ -1,0 +1,189 @@
+
+//DESIGN(VERILOG)
+module down_counter #(parameter N=4)
+  (
+  input clk,
+  input rst,
+  output reg[N-1:0] count
+  );
+  
+  always @(posedge clk) begin
+    if(rst)
+      count<={N{1'b1}};
+    else begin
+      if(count<=((2**N)-1))
+         count<=count-1;
+      else
+        count<={N{1'b1}};
+    end 
+  end
+  
+  endmodule
+
+//TESTBENCH
+
+module down_counter_tb;
+  logic clk=0;
+  always #5 clk=~clk;
+  
+  //interface intialization
+  counter itf(clk);
+  defparam itf.N=5;
+  
+  
+  //dut instance for verilog file
+  down_counter  dut  (.clk(clk),.rst(itf.rst),.count(itf.count));
+  defparam dut.N=5;
+  
+  initial begin
+    $dumpfile("v.vcd");
+    $dumpvars(0,down_counter_tb);
+    $monitor("TIME=%0T ||CLK=%B RST=%B || COUNT=%0D",$time,clk,itf.rst,itf.count);
+     clk=0;
+    itf.rst=1;
+    #20 itf.rst=0; 
+    #400 itf.rst=1;
+    #20 itf.rst=0;
+    #200 $finish;
+  end
+endmodule
+
+interface counter #(parameter N=4)(input logic clk);
+  logic rst;
+  logic [N-1:0]count;  
+endinterface
+
+/*
+OUTPUT:
+TIME=0 ||CLK=0 RST=1 || COUNT=x
+TIME=5 ||CLK=1 RST=1 || COUNT=31
+TIME=10 ||CLK=0 RST=1 || COUNT=31
+TIME=15 ||CLK=1 RST=1 || COUNT=31
+TIME=20 ||CLK=0 RST=0 || COUNT=31
+TIME=25 ||CLK=1 RST=0 || COUNT=30
+TIME=30 ||CLK=0 RST=0 || COUNT=30
+TIME=35 ||CLK=1 RST=0 || COUNT=29
+TIME=40 ||CLK=0 RST=0 || COUNT=29
+TIME=45 ||CLK=1 RST=0 || COUNT=28
+TIME=50 ||CLK=0 RST=0 || COUNT=28
+TIME=55 ||CLK=1 RST=0 || COUNT=27
+TIME=60 ||CLK=0 RST=0 || COUNT=27
+TIME=65 ||CLK=1 RST=0 || COUNT=26
+TIME=70 ||CLK=0 RST=0 || COUNT=26
+TIME=75 ||CLK=1 RST=0 || COUNT=25
+TIME=80 ||CLK=0 RST=0 || COUNT=25
+TIME=85 ||CLK=1 RST=0 || COUNT=24
+TIME=90 ||CLK=0 RST=0 || COUNT=24
+TIME=95 ||CLK=1 RST=0 || COUNT=23
+TIME=100 ||CLK=0 RST=0 || COUNT=23
+TIME=105 ||CLK=1 RST=0 || COUNT=22
+TIME=110 ||CLK=0 RST=0 || COUNT=22
+TIME=115 ||CLK=1 RST=0 || COUNT=21
+TIME=120 ||CLK=0 RST=0 || COUNT=21
+TIME=125 ||CLK=1 RST=0 || COUNT=20
+TIME=130 ||CLK=0 RST=0 || COUNT=20
+TIME=135 ||CLK=1 RST=0 || COUNT=19
+TIME=140 ||CLK=0 RST=0 || COUNT=19
+TIME=145 ||CLK=1 RST=0 || COUNT=18
+TIME=150 ||CLK=0 RST=0 || COUNT=18
+TIME=155 ||CLK=1 RST=0 || COUNT=17
+TIME=160 ||CLK=0 RST=0 || COUNT=17
+TIME=165 ||CLK=1 RST=0 || COUNT=16
+TIME=170 ||CLK=0 RST=0 || COUNT=16
+TIME=175 ||CLK=1 RST=0 || COUNT=15
+TIME=180 ||CLK=0 RST=0 || COUNT=15
+TIME=185 ||CLK=1 RST=0 || COUNT=14
+TIME=190 ||CLK=0 RST=0 || COUNT=14
+TIME=195 ||CLK=1 RST=0 || COUNT=13
+TIME=200 ||CLK=0 RST=0 || COUNT=13
+TIME=205 ||CLK=1 RST=0 || COUNT=12
+TIME=210 ||CLK=0 RST=0 || COUNT=12
+TIME=215 ||CLK=1 RST=0 || COUNT=11
+TIME=220 ||CLK=0 RST=0 || COUNT=11
+TIME=225 ||CLK=1 RST=0 || COUNT=10
+TIME=230 ||CLK=0 RST=0 || COUNT=10
+TIME=235 ||CLK=1 RST=0 || COUNT=9
+TIME=240 ||CLK=0 RST=0 || COUNT=9
+TIME=245 ||CLK=1 RST=0 || COUNT=8
+TIME=250 ||CLK=0 RST=0 || COUNT=8
+TIME=255 ||CLK=1 RST=0 || COUNT=7
+TIME=260 ||CLK=0 RST=0 || COUNT=7
+TIME=265 ||CLK=1 RST=0 || COUNT=6
+TIME=270 ||CLK=0 RST=0 || COUNT=6
+TIME=275 ||CLK=1 RST=0 || COUNT=5
+TIME=280 ||CLK=0 RST=0 || COUNT=5
+TIME=285 ||CLK=1 RST=0 || COUNT=4
+TIME=290 ||CLK=0 RST=0 || COUNT=4
+TIME=295 ||CLK=1 RST=0 || COUNT=3
+TIME=300 ||CLK=0 RST=0 || COUNT=3
+TIME=305 ||CLK=1 RST=0 || COUNT=2
+TIME=310 ||CLK=0 RST=0 || COUNT=2
+TIME=315 ||CLK=1 RST=0 || COUNT=1
+TIME=320 ||CLK=0 RST=0 || COUNT=1
+TIME=325 ||CLK=1 RST=0 || COUNT=0
+TIME=330 ||CLK=0 RST=0 || COUNT=0
+TIME=335 ||CLK=1 RST=0 || COUNT=31
+TIME=340 ||CLK=0 RST=0 || COUNT=31
+TIME=345 ||CLK=1 RST=0 || COUNT=30
+TIME=350 ||CLK=0 RST=0 || COUNT=30
+TIME=355 ||CLK=1 RST=0 || COUNT=29
+TIME=360 ||CLK=0 RST=0 || COUNT=29
+TIME=365 ||CLK=1 RST=0 || COUNT=28
+TIME=370 ||CLK=0 RST=0 || COUNT=28
+TIME=375 ||CLK=1 RST=0 || COUNT=27
+TIME=380 ||CLK=0 RST=0 || COUNT=27
+TIME=385 ||CLK=1 RST=0 || COUNT=26
+TIME=390 ||CLK=0 RST=0 || COUNT=26
+TIME=395 ||CLK=1 RST=0 || COUNT=25
+TIME=400 ||CLK=0 RST=0 || COUNT=25
+TIME=405 ||CLK=1 RST=0 || COUNT=24
+TIME=410 ||CLK=0 RST=0 || COUNT=24
+TIME=415 ||CLK=1 RST=0 || COUNT=23
+TIME=420 ||CLK=0 RST=1 || COUNT=23
+TIME=425 ||CLK=1 RST=1 || COUNT=31
+TIME=430 ||CLK=0 RST=1 || COUNT=31
+TIME=435 ||CLK=1 RST=1 || COUNT=31
+TIME=440 ||CLK=0 RST=0 || COUNT=31
+TIME=445 ||CLK=1 RST=0 || COUNT=30
+TIME=450 ||CLK=0 RST=0 || COUNT=30
+TIME=455 ||CLK=1 RST=0 || COUNT=29
+TIME=460 ||CLK=0 RST=0 || COUNT=29
+TIME=465 ||CLK=1 RST=0 || COUNT=28
+TIME=470 ||CLK=0 RST=0 || COUNT=28
+TIME=475 ||CLK=1 RST=0 || COUNT=27
+TIME=480 ||CLK=0 RST=0 || COUNT=27
+TIME=485 ||CLK=1 RST=0 || COUNT=26
+TIME=490 ||CLK=0 RST=0 || COUNT=26
+TIME=495 ||CLK=1 RST=0 || COUNT=25
+TIME=500 ||CLK=0 RST=0 || COUNT=25
+TIME=505 ||CLK=1 RST=0 || COUNT=24
+TIME=510 ||CLK=0 RST=0 || COUNT=24
+TIME=515 ||CLK=1 RST=0 || COUNT=23
+TIME=520 ||CLK=0 RST=0 || COUNT=23
+TIME=525 ||CLK=1 RST=0 || COUNT=22
+TIME=530 ||CLK=0 RST=0 || COUNT=22
+TIME=535 ||CLK=1 RST=0 || COUNT=21
+TIME=540 ||CLK=0 RST=0 || COUNT=21
+TIME=545 ||CLK=1 RST=0 || COUNT=20
+TIME=550 ||CLK=0 RST=0 || COUNT=20
+TIME=555 ||CLK=1 RST=0 || COUNT=19
+TIME=560 ||CLK=0 RST=0 || COUNT=19
+TIME=565 ||CLK=1 RST=0 || COUNT=18
+TIME=570 ||CLK=0 RST=0 || COUNT=18
+TIME=575 ||CLK=1 RST=0 || COUNT=17
+TIME=580 ||CLK=0 RST=0 || COUNT=17
+TIME=585 ||CLK=1 RST=0 || COUNT=16
+TIME=590 ||CLK=0 RST=0 || COUNT=16
+TIME=595 ||CLK=1 RST=0 || COUNT=15
+TIME=600 ||CLK=0 RST=0 || COUNT=15
+TIME=605 ||CLK=1 RST=0 || COUNT=14
+TIME=610 ||CLK=0 RST=0 || COUNT=14
+TIME=615 ||CLK=1 RST=0 || COUNT=13
+TIME=620 ||CLK=0 RST=0 || COUNT=13
+TIME=625 ||CLK=1 RST=0 || COUNT=12
+TIME=630 ||CLK=0 RST=0 || COUNT=12
+TIME=635 ||CLK=1 RST=0 || COUNT=11
+$finish called from file "testbench.sv", line 23.
+$finish at simulation time                  640
+           V C S   S i m u l a t i o n   R e p o r t
+*/
