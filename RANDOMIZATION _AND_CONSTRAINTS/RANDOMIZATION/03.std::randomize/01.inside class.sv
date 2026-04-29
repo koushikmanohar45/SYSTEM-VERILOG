@@ -38,7 +38,7 @@ module std_randomize;
   
   initial begin
     $display("==================================================");
-    $display("                  STD::RANDOMIZE                       ");
+    $display("                  STD::RANDOMIZE                  ");
     $display("==================================================");
     r=new();
     repeat(3)begin
