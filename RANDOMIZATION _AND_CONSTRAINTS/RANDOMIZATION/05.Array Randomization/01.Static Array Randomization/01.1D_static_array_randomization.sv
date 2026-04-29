@@ -2,7 +2,7 @@ class static_array;
   rand logic [7:0] a[5];
   rand logic [4:0] b[7];
   
-  constraint c{ 
+  constraint con{ 
                 foreach(a[i])
                  a[i]%2==0;
     
@@ -28,7 +28,6 @@ module randomization();
     end
   end
 endmodule
-
 
 
 
