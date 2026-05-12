@@ -13,7 +13,7 @@ class monitor;
 
   task mtr();
     begin
-      repeat(16)begin
+      repeat(30)begin
         t=new();
         #1;
         t.a=vif.a;
