@@ -16,7 +16,7 @@ class scoreboard;
       $display("===========================================================================");
       $display("                      VERIFICATION FULL ADDER IN SV                        ");
       $display("===========================================================================");
-      repeat(16)begin
+      repeat(30)begin
         t1=new();
         t2=new();
         mb1.get(t1);
