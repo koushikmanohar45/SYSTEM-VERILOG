@@ -13,7 +13,7 @@ class reference;
   task add();
     reg sum,carry;
     begin
-      repeat(16)begin
+      repeat(30)begin
         mb.get(t);
         t.sum=t.a^t.b^t.cin;
         t.carry=(t.a&t.b)|(t.b&t.cin)|(t.cin&t.a);
