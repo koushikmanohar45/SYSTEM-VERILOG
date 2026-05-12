@@ -11,7 +11,7 @@ class driver;
   
   task driv();
     begin
-      repeat(16)begin
+      repeat(30)begin
         t=new();
         mb.get(t);
         vif.a=t.a;
