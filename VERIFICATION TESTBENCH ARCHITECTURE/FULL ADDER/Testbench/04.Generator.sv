@@ -11,7 +11,7 @@ class generator;
   
   task gen();
     begin
-      repeat(16)begin
+      repeat(30)begin
         t=new();
         t.randomize();
         mb.put(t);
