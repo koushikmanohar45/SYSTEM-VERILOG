@@ -52,4 +52,10 @@ module test;
 endmodule
 
 
+/*
+OUTPUT:
+[PARENT CLASS] c=0,  d=1, and_gate=0
+[CHILD CLASS] a=0,  b=1, or_gate=1
+[GRANDCHILD CLASS] e=0,  f=1, or_gate=1
+*/
 
