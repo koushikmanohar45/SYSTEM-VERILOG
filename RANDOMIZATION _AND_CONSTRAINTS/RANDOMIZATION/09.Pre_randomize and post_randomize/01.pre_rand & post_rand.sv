@@ -63,3 +63,83 @@ module randomization;
     
   end
 endmodule
+
+/*
+output:
+========================================
+Pre_randomize function called
+Post_randomize called
+| data1=228 data2=30 sel=1 | out=228
+========================================
+========================================
+Pre_randomize function called
+Post_randomize called
+| data1=45 data2=30 sel=1 | out=45
+========================================
+========================================
+Pre_randomize function called
+Post_randomize called
+| data1=155 data2=30 sel=0 | out=30
+========================================
+========================================
+Pre_randomize function called
+Post_randomize called
+| data1=55 data2=30 sel=1 | out=55
+========================================
+========================================
+Pre_randomize function called
+Post_randomize called
+| data1=210 data2=30 sel=0 | out=30
+========================================
+========================================
+Pre_randomize function called
+Post_randomize called
+| data1=127 data2=30 sel=1 | out=127
+========================================
+========================================
+Pre_randomize function called
+Post_randomize called
+| data1=213 data2=30 sel=0 | out=30
+========================================
+========================================
+Pre_randomize function called
+Post_randomize called
+| data1=249 data2=30 sel=1 | out=249
+========================================
+========================================
+Pre_randomize function called
+Post_randomize called
+| data1=63 data2=30 sel=0 | out=30
+========================================
+========================================
+Pre_randomize function called
+Post_randomize called
+| data1=198 data2=30 sel=1 | out=198
+========================================
+========================================
+Pre_randomize function called
+Post_randomize called
+| data1=9 data2=20 sel=1 | out=9
+========================================
+========================================
+Pre_randomize function called
+Post_randomize called
+| data1=10 data2=85 sel=0 | out=85
+========================================
+========================================
+Pre_randomize function called
+Post_randomize called
+| data1=35 data2=74 sel=1 | out=35
+========================================
+========================================
+Pre_randomize function called
+Post_randomize called
+| data1=30 data2=18 sel=0 | out=18
+========================================
+========================================
+Pre_randomize function called
+Post_randomize called
+| data1=201 data2=86 sel=1 | out=201
+========================================
+           V C S   S i m u l a t i o n   R e p o r t
+*/
